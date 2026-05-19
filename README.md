@@ -67,10 +67,6 @@ O foco principal do projeto é demonstrar domínio prático do ambiente Linux at
 
 # Perfil Acadêmico
 
-<p align="center">
-  <img src="https://media.giphy.com/media/coxQHKASG60HrHtvkt/giphy.gif" width="650">
-</p>
-
 O projeto segue a proposta acadêmica do professor Deivison Takatu e da Fatec Itapetininga, priorizando:
 
 - aprendizagem prática
