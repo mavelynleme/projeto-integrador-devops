@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dashboard-monitoramento-deployment
+  namespace: default
+  labels:
+    app: dashboard-monitoramento
+spec:
+  # REQUISITO: Escalabilidade básica (2 réplicas garantem alta disponibilidade)
+  replicas: 2 
+  selector:
+    matchLabels:
+      app: dashboard-monitoramento
+  template:
+    metadata:
+      labels:
+        app: dashboard-monitoramento
+    spec:
+      containers:
+      - name: dashboard-web
+        # Imagem que será gerada a partir do Dockerfile de vocês
+        image: marcellegg/projeto-integrador-devops:latest 
+        ports:
+        - containerPort: 80
+        resources:
+          # REQUISITO: Gerenciamento de recursos de S.O. dentro do cluster
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dashboard-monitoramento-service
+  namespace: default
+spec:
+  # NodePort permite acessar a aplicação pela porta do nó do cluster
+  type: NodePort 
+  selector:
+    app: dashboard-monitoramento
+  ports:
+  - port: 80          # Porta que o Service escuta internamente
+    targetPort: 80    # Porta que o container expõe (configurada no Dockerfile)
+    nodePort: 30080   # Porta externa para vocês digitarem no navegador (ex: http://localhost:30080)
