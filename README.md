@@ -1,7 +1,11 @@
 # Projeto Integrador — DevOps e Sistemas Operacionais
 
 <p align="center">
+<<<<<<< HEAD
   <img src="https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif" width="700">
+=======
+  <img src="https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif" width="700">
+>>>>>>> 340ced7503f4c9e8fefda7ea17ceed9888c034bf
 </p>
 
 ![Linux](https://img.shields.io/badge/Linux-Ubuntu-E95420?logo=ubuntu&logoColor=white)
@@ -82,6 +86,7 @@ A proposta aproxima os alunos de cenários reais encontrados no mercado de tecno
 
 ---
 
+<<<<<<< HEAD
 # Tecnologias Utilizadas
 
 ## Sistemas Operacionais
@@ -362,9 +367,18 @@ Monitoramento e Logs
 
 <p align="center">
   <img src="https://media.giphy.com/media/xTiTnxpQ3ghPiB2Hp6/giphy.gif" width="700">
+=======
+# DevOps Mood
+
+<p align="center">
+  <img src="https://media.giphy.com/media/xTiTnxpQ3ghPiB2Hp6/giphy.gif" width="700">
+>>>>>>> 340ced7503f4c9e8fefda7ea17ceed9888c034bf
 </p>
 
 > “Código sozinho não resolve problemas.
 > Ecossistemas resolvem.”
+<<<<<<< HEAD
 ---
 
+=======
+>>>>>>> 340ced7503f4c9e8fefda7ea17ceed9888c034bf
