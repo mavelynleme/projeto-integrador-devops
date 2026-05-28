@@ -41,7 +41,8 @@ else
 fi
 
 # 3. Automação do Build do Docker Container
-echo -e "\n${AZUL}[3/4] Iniciando Build da imagem Docker (Nginx + Bun)...${SEM_COR}"
+# Ajustado para refletir a tecnologia real do seu Dockerfile (Node + Nginx)
+echo -e "\n${AZUL}[3/4] Iniciando Build da imagem Docker (Node + Nginx Alpine)...${SEM_COR}"
 IMAGE_NAME="marcellegg/projeto-integrador-devops:latest"
 
 docker build -t $IMAGE_NAME .
