@@ -1,14 +1,27 @@
 name: CI Pipeline
 
-on: [push]
+on:
+  push:
+    branches: [ "master", "main" ]
+  pull_request:
+    branches: [ "master", "main" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Install dependencies
-        run: npm install
-      - name: Run app
-        run: node index.js
+    - name: Checkout código
+      uses: actions/checkout@v4
+
+    - name: Configurar Node.js 20
+      uses: actions/setup-node@v4
+      with:
+        node-node: 20
+        cache: 'npm'
+
+    - name: Instalar Dependências
+      run: npm ci || npm install
+
+    - name: Validar Compilação (Build)
+      run: npm run build
