@@ -160,6 +160,28 @@ npm run build
 
 ---
 
+## Testes Automatizados
+
+O projeto usa Vitest com Testing Library para validar comportamento da aplicacao e evidencias importantes do projeto DevOps.
+
+Execute os testes com:
+
+```bash
+npm run test
+```
+
+Os testes atuais verificam:
+
+- renderizacao da aplicacao principal sem quebrar
+- exibicao de textos operacionais importantes do dashboard
+- renderizacao acessivel do botao de tema
+- existencia de arquivos de evidencia DevOps, como `docker-compose.yml`, manifests em `k8s/`, scripts em `scripts/` e workflow de CI
+- conteudo essencial de Docker Compose, Kubernetes Deployment e GitHub Actions
+
+Os testes nao exigem Docker, Kubernetes, Bash ou `kubectl` instalados localmente. O GitHub Actions executa `npm run test` como parte do pipeline de CI.
+
+---
+
 ## Pipeline CI/CD
 
 O workflow atual usa GitHub Actions e executa:
