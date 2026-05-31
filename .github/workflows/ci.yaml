@@ -2,9 +2,9 @@ name: CI Pipeline
 
 on:
   push:
-    branches: [ "master", "main" ]
+    branches: [ "develop", "master", "main" ]
   pull_request:
-    branches: [ "master", "main" ]
+    branches: [ "develop", "master", "main" ]
 
 jobs:
   build:
@@ -38,3 +38,6 @@ jobs:
 
       - name: Validar build
         run: npm run build
+
+      - name: Validar build Docker
+        run: docker build -t linux-devops-dashboard:ci .
