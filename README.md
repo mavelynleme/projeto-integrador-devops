@@ -1,384 +1,374 @@
-# Projeto Integrador — DevOps e Sistemas Operacionais
+# Linux DevOps Monitoring Dashboard
 
-<p align="center">
-<<<<<<< HEAD
-  <img src="https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif" width="700">
-=======
-  <img src="https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif" width="700">
->>>>>>> 340ced7503f4c9e8fefda7ea17ceed9888c034bf
-</p>
+Projeto Integrador de DevOps e Sistemas Operacionais com uma aplicacao frontend em React/Vite/TypeScript e evidencias praticas de Git Flow, automacao Linux, Shell Script, Docker, Kubernetes, CI/CD, testes automatizados, logs, backups, configuracao e documentacao.
 
-![Linux](https://img.shields.io/badge/Linux-Ubuntu-E95420?logo=ubuntu&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-Containerized-2496ED?logo=docker&logoColor=white)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-Orchestration-326CE5?logo=kubernetes&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/CI%2FCD-GitHub_Actions-2088FF?logo=github-actions&logoColor=white)
-![Git](https://img.shields.io/badge/Git-Version_Control-F05032?logo=git&logoColor=white)
-![DevOps](https://img.shields.io/badge/DevOps-Automation-blueviolet)
-![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-success)
+> O dashboard visual foi preservado durante as etapas de DevOps. Os dados exibidos na interface ainda sao simulados no frontend; nao existe backend ou API neste repositorio.
 
----
+## Objetivo
 
-# Objetivo do Projeto
+Demonstrar, em um projeto academico, como uma aplicacao web pode ser organizada com praticas de DevOps e conceitos de Sistemas Operacionais Linux. O foco do trabalho nao e apenas a interface, mas o ecossistema ao redor dela: automacao, conteinerizacao, orquestracao, pipeline, testes, logs e documentacao.
 
-Este projeto integrador tem como objetivo aplicar conceitos modernos de:
+## Contexto Academico
 
-- DevOps
-- Sistemas Operacionais Linux
-- Automação
-- Containers
-- Integração Contínua (CI)
-- Entrega Contínua (CD)
-- Monitoramento e Observabilidade
+Este projeto atende a criterios comuns de avaliacao em disciplinas de DevOps e Sistemas Operacionais:
 
-A proposta busca demonstrar como o desenvolvimento moderno depende da integração entre:
-
-- desenvolvimento de software
-- infraestrutura
-- operações Linux
-- automação operacional
-
-O foco principal do projeto é demonstrar domínio prático do ambiente Linux através de:
-
-- Shell Scripts
-- logs
-- automação
+- Git e Git Flow
+- conceitos de Linux
+- automacao com Shell Script
 - Docker
 - Kubernetes
-- pipelines CI/CD
-- organização operacional
+- CI/CD com GitHub Actions
+- testes automatizados
+- logs e monitoramento
+- gerenciamento de configuracao
+- documentacao e prontidao para apresentacao
 
----
+## Tecnologias
 
-# Objetivos Acadêmicos
+| Area | Tecnologias |
+| --- | --- |
+| Frontend | React, Vite, TypeScript |
+| UI | Tailwind CSS, Radix UI/shadcn-style components, Lucide React |
+| Testes | Vitest, Testing Library, jsdom |
+| Qualidade | ESLint |
+| CI/CD | GitHub Actions |
+| Linux | Bash, cron, comandos GNU/Linux |
+| Containers | Docker, Docker Compose, Nginx |
+| Kubernetes | Deployment, Service, ConfigMap, Secret example |
+| Configuracao | `.env.example`, ConfigMap Kubernetes |
 
-✅ Aplicar conceitos de DevOps na prática
+## Arquitetura
 
-✅ Utilizar Git e Git Flow em equipe
-
-✅ Automatizar tarefas administrativas Linux
-
-✅ Utilizar containers Docker
-
-✅ Compreender conceitos básicos de Kubernetes
-
-✅ Criar pipelines CI/CD
-
-✅ Gerar logs e monitoramento operacional
-
-✅ Desenvolver visão integrada entre software e infraestrutura
-
----
-
-# Perfil Acadêmico
-
-O projeto segue a proposta acadêmica do professor Deivison Takatu e da Fatec Itapetininga, priorizando:
-
-- aprendizagem prática
-- integração entre desenvolvimento e operações
-- domínio operacional Linux
-- automação de ambientes
-- boas práticas DevOps
-- colaboração em equipe
-- uso profissional de GitHub
-- organização de infraestrutura computacional
-
-A proposta aproxima os alunos de cenários reais encontrados no mercado de tecnologia e infraestrutura moderna.
-
----
-
-<<<<<<< HEAD
-# Tecnologias Utilizadas
-
-## Sistemas Operacionais
-
-- Linux Ubuntu
-- Shell Bash
-
-## Containers e Virtualização
-
-- Docker
-- Docker Compose
-- Kubernetes
-
-## DevOps e Automação
-
-- GitHub Actions
-- CI/CD
-- Shell Script
-
-## Versionamento
-
-- Git
-- GitHub
-
-## Observabilidade
-
-- Logs Linux
-- Monitoramento básico de containers
-
----
-
-# Estrutura da Aplicação
-
+```text
+Usuario
+  |
+  v
+React/Vite Dashboard
+  |
+  v
+Build estatico em dist/
+  |
+  v
+Nginx no container Docker
+  |
+  v
+Docker Compose ou Kubernetes Service
 ```
-projeto-devops/
-│
-├── app/
-│   ├── scripts/
-│   │   ├── monitor.sh
-│   │   ├── backup.sh
-│   │   └── coleta_logs.sh
-│   │
-│   └── logs/
-│
-├── docker/
-│   ├── Dockerfile
-│   └── docker-compose.yml
-│
-├── kubernetes/
-│   ├── deployment.yaml
-│   └── service.yaml
-│
-├── .github/
-│   └── workflows/
-│       └── pipeline.yml
-│
-├── README.md
-│
-└── docs/
+
+O dashboard e uma aplicacao frontend estatica. O Dockerfile gera o build com Node.js e serve o resultado com Nginx. No Kubernetes, o Deployment usa a imagem `linux-devops-dashboard:latest` e o Service expõe a aplicacao dentro do cluster.
+
+## Estrutura
+
+```text
+.
+|-- .github/workflows/ci.yaml
+|-- backups/.gitkeep
+|-- docs/
+|   |-- evaluation-checklist.md
+|   `-- presentation-script.md
+|-- k8s/
+|   |-- configmap.yaml
+|   |-- deployment.yaml
+|   |-- secret.example.yaml
+|   `-- service.yaml
+|-- logs/.gitkeep
+|-- public/
+|-- scripts/
+|   |-- backup.sh
+|   |-- cleanup-logs.sh
+|   |-- install-cron.sh
+|   `-- monitor-system.sh
+|-- src/
+|   |-- assets/
+|   |-- components/
+|   |-- pages/
+|   `-- test/
+|-- .dockerignore
+|-- .env.example
+|-- .gitattributes
+|-- Dockerfile
+|-- docker-compose.yml
+|-- package.json
+|-- package-lock.json
+|-- README.md
+|-- vite.config.ts
+`-- vitest.config.ts
 ```
----
 
-# A estrutura foi organizada para separar:
+## Git Flow
 
-- automações Linux
-- containers
-- pipelines
-- arquivos Kubernetes
-- documentação
-- logs operacionais
+O repositorio possui historico com branches como `develop` e `feature/*`. A estrategia recomendada para a demonstracao e:
 
-Isso facilita:
-
-- manutenção
-- escalabilidade
-- colaboração em equipe
-- organização do ambiente DevOps
-
----
-
-# Organização do Ambiente
-
-O ambiente do projeto foi estruturado utilizando Linux Ubuntu como sistema operacional principal.
-
-A organização inclui:
-
-- terminal Linux
-- Shell Scripts
-- containers Docker
-- automação de tarefas
-- versionamento Git
-- integração com GitHub
-
-O ambiente segue uma estrutura semelhante à utilizada em projetos reais de infraestrutura moderna.
-
-## Fluxo operacional do ambiente
-
-1. Desenvolvimento local no Linux  
-2. Versionamento com Git  
-3. Push para GitHub  
-4. Execução automática do pipeline  
-5. Build dos containers  
-6. Execução dos testes e automações  
-7. Simulação de deploy com Kubernetes  
-
----
-
-# Explicação do Pipeline
-
-O pipeline CI/CD foi criado utilizando GitHub Actions.
-
-## Objetivos do pipeline
-
-- automatizar processos
-- validar o ambiente
-- executar scripts automaticamente
-- garantir integração contínua
-
-## Etapas principais
-
-### 1. Clone do Repositório
-
-O GitHub Actions realiza checkout automático do projeto.
-
-### 2. Configuração do Ambiente
-
-Instala dependências e prepara o ambiente Linux.
-
-### 3. Execução dos Scripts
-
-Os scripts Shell são executados automaticamente.
-
-#### Exemplos:
-
-- monitoramento
-- backup
-- coleta de logs
-
-### 4. Build Docker
-
-Criação automática da imagem containerizada.
-
-### 5. Testes Operacionais
-
-Verificação básica do funcionamento do container.
-
-### 6. Simulação de Deploy
-
-Execução simulada utilizando conceitos de Kubernetes.
-
----
-
-# Explicação da Automação
-
-As automações do projeto foram desenvolvidas utilizando Shell Script Bash.
-
-## Objetivos
-
-- automatizar tarefas Linux
-- reduzir atividades manuais
-- organizar logs
-- monitorar ambiente
-- simular administração operacional
-
-## Automatizações implementadas
-
-### Monitoramento
-
-Script responsável por verificar:
-
-- uso de CPU
-- memória
-- processos ativos
-- status operacional
-
-### Backup
-
-Automação simples de backup de arquivos e logs.
-
-### Coleta de Logs
-
-Scripts para organizar logs operacionais automaticamente.
-
-## Benefícios da automação
-
-- produtividade
-- padronização
-- redução de erros
-- controle operacional
-
----
-
-# Explicação dos Containers
-
-O projeto utiliza Docker para containerização da aplicação.
-
-## Objetivos
-
-- isolamento do ambiente
-- padronização operacional
-- facilidade de deploy
-- portabilidade
-
-## Funcionalidades
-
-- criação de imagens Docker
-- execução de containers
-- gerenciamento via Docker Compose
-- simulação de microsserviços
-
-## Vantagens do uso de containers
-
-✅ Ambiente reproduzível
-
-✅ Facilidade de manutenção
-
-✅ Portabilidade entre sistemas
-
-✅ Escalabilidade
-
-✅ Integração com pipelines CI/CD
-
----
-
-# Explicação da Infraestrutura Utilizada
-
-A infraestrutura do projeto foi baseada em conceitos modernos de DevOps e Cloud Native.
-
-## Componentes utilizados
-
-### Linux Ubuntu
-
-Sistema operacional principal para administração e automação.
-
-### Docker
-
-Responsável pela containerização da aplicação.
-
-### Kubernetes
-
-Utilizado para simular orquestração de containers.
-
-### GitHub Actions
-
-Ferramenta de automação CI/CD.
-
-### GitHub
-
-Hospedagem do repositório e integração colaborativa.
-
-### Shell Script
-
-Automação operacional Linux.
-
----
-
-# Fluxo Geral da Infraestrutura
-
+```bash
+git checkout develop
+git checkout -b feature/nome-da-etapa
+git add .
+git commit -m "feat: descreve a melhoria"
+git push origin feature/nome-da-etapa
 ```
-Desenvolvedor
-      ↓
-Git/GitHub
-      ↓
-GitHub Actions (CI/CD)
-      ↓
-Docker Build
-      ↓
-Containers
-      ↓
-Kubernetes
-      ↓
-Monitoramento e Logs
-``` 
 
----
+Pull Requests devem ser abertos para `develop`. O CI esta configurado para rodar em `develop`, `master` e `main`, tanto em `push` quanto em `pull_request`.
 
-# DevOps Mood
+## Ambiente Local
 
-<p align="center">
-  <img src="https://media.giphy.com/media/xTiTnxpQ3ghPiB2Hp6/giphy.gif" width="700">
-=======
-# DevOps Mood
+Instale dependencias:
 
-<p align="center">
-  <img src="https://media.giphy.com/media/xTiTnxpQ3ghPiB2Hp6/giphy.gif" width="700">
->>>>>>> 340ced7503f4c9e8fefda7ea17ceed9888c034bf
-</p>
+```bash
+npm ci
+```
 
-> “Código sozinho não resolve problemas.
-> Ecossistemas resolvem.”
-<<<<<<< HEAD
----
+Execute em desenvolvimento:
 
-=======
+```bash
+npm run dev
+```
 
+Validacoes principais:
+
+```bash
+npm run lint
+npm run test
+npm run build
+```
+
+## Variaveis de Ambiente
+
+O arquivo `.env.example` documenta variaveis seguras:
+
+```env
+VITE_APP_NAME="Projeto Integrador DevOps"
+VITE_API_BASE_URL=""
+NODE_ENV="development"
+```
+
+Atualmente o dashboard nao consome API real. `VITE_API_BASE_URL` fica reservado para uma futura integracao.
+
+## Testes Automatizados
+
+O projeto usa Vitest com Testing Library.
+
+```bash
+npm run test
+```
+
+Os testes verificam:
+
+- renderizacao da aplicacao principal
+- textos operacionais do dashboard
+- botao de tema como controle acessivel
+- existencia de evidencias DevOps, como Docker Compose, manifests Kubernetes, scripts Linux e workflow de CI
+- trechos essenciais de Docker Compose, Kubernetes Deployment e GitHub Actions
+
+Os testes nao exigem Docker, Kubernetes, Bash ou `kubectl`.
+
+## CI/CD
+
+Workflow: `.github/workflows/ci.yaml`
+
+O GitHub Actions executa:
+
+1. `npm ci`
+2. `npm run lint`
+3. `npm run test`
+4. `bash -n` nos scripts shell
+5. `npm run build`
+6. `docker build -t linux-devops-dashboard:ci .`
+
+O pipeline nao faz deploy e nao envia imagem para registry.
+
+## Linux e Shell Scripts
+
+Os scripts ficam em `scripts/` e usam Bash com `set -euo pipefail`.
+
+Dar permissao de execucao em Linux, WSL ou Git Bash:
+
+```bash
+chmod +x scripts/*.sh
+```
+
+Validar sintaxe sem executar:
+
+```bash
+bash -n scripts/monitor-system.sh
+bash -n scripts/backup.sh
+bash -n scripts/cleanup-logs.sh
+bash -n scripts/install-cron.sh
+```
+
+Executar monitoramento:
+
+```bash
+./scripts/monitor-system.sh
+```
+
+Criar backup:
+
+```bash
+./scripts/backup.sh
+```
+
+Limpar logs antigos:
+
+```bash
+./scripts/cleanup-logs.sh
+LOG_RETENTION_DAYS=3 ./scripts/cleanup-logs.sh
+```
+
+Instalar cron para monitoramento a cada 5 minutos:
+
+```bash
+./scripts/install-cron.sh
+crontab -l
+```
+
+Conceitos demonstrados:
+
+- processos com `ps`
+- usuario com `whoami`
+- hostname com `hostname`
+- uptime e load average
+- memoria com `free`
+- disco com `df`
+- `/proc/loadavg`
+- compactacao com `tar`
+- limpeza com `find`
+- agendamento com cron
+
+## Logs e Backups
+
+Diretorios versionados:
+
+- `logs/.gitkeep`
+- `backups/.gitkeep`
+
+Arquivos gerados localmente nao devem ser commitados:
+
+- `logs/*.log`
+- `backups/*.tar.gz`
+
+Inspecao:
+
+```bash
+ls -la logs backups
+tail -n 50 logs/system-monitor.log
+tail -n 50 logs/backup.log
+tail -n 50 logs/cleanup.log
+tail -n 50 logs/cron-install.log
+```
+
+## Docker
+
+O Dockerfile usa multi-stage build:
+
+1. `node:20-alpine` instala dependencias com `npm ci` e executa o build.
+2. `nginx:1.25-alpine` serve os arquivos estaticos.
+
+Docker local requer Docker Desktop, Docker Engine, WSL com Docker ou ambiente equivalente.
+
+Build:
+
+```bash
+docker build -t linux-devops-dashboard .
+```
+
+Run:
+
+```bash
+docker run --name linux-devops-dashboard -p 8080:80 linux-devops-dashboard
+```
+
+Acesso:
+
+```text
+http://localhost:8080
+```
+
+Parar/remover:
+
+```bash
+docker stop linux-devops-dashboard
+docker rm linux-devops-dashboard
+```
+
+Docker Compose:
+
+```bash
+docker compose up --build
+docker compose down
+```
+
+## Kubernetes
+
+Manifests em `k8s/`:
+
+- `deployment.yaml`: 2 replicas, probes HTTP e requests/limits
+- `service.yaml`: Service `ClusterIP` na porta 80
+- `configmap.yaml`: `APP_NAME`, `NODE_ENV`, `LOG_LEVEL`
+- `secret.example.yaml`: exemplo sem segredos reais
+
+Validacao local requer `kubectl` e um cluster, como Docker Desktop Kubernetes, Minikube, Kind ou cluster remoto.
+
+Aplicar:
+
+```bash
+kubectl apply -f k8s/
+```
+
+Inspecionar:
+
+```bash
+kubectl get pods
+kubectl get svc
+kubectl get deployments
+```
+
+Port-forward:
+
+```bash
+kubectl port-forward svc/linux-devops-dashboard 8080:80
+```
+
+Acesso:
+
+```text
+http://localhost:8080
+```
+
+Remover:
+
+```bash
+kubectl delete -f k8s/
+```
+
+## Comandos de Demonstracao
+
+```bash
+git branch -a
+git log --oneline --graph --decorate -n 10
+npm run lint
+npm run test
+npm run build
+bash -n scripts/*.sh
+docker build -t linux-devops-dashboard .
+docker compose up --build
+kubectl apply -f k8s/
+kubectl get pods
+kubectl port-forward svc/linux-devops-dashboard 8080:80
+```
+
+Docker e Kubernetes dependem de ferramentas locais instaladas. Em maquinas Windows, use Docker Desktop, WSL, Minikube, Kind ou um cluster remoto.
+
+## Documentacao de Apoio
+
+- `docs/evaluation-checklist.md`: mapeamento dos criterios de avaliacao para evidencias.
+- `docs/presentation-script.md`: roteiro para apresentacao.
+
+## Melhorias Futuras
+
+- backend/API real para coletar metricas do sistema
+- integracao do dashboard com dados reais
+- cobertura de testes mais ampla
+- publicacao de imagem em registry
+- deploy em cluster real
+- observabilidade com ferramentas como Prometheus/Grafana
+- documentacao de troubleshooting por ambiente

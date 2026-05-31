@@ -1,0 +1,15 @@
+# Evaluation Checklist
+
+This checklist maps the professor evaluation criteria to evidence currently present in the repository. It does not claim features that are not implemented.
+
+| Criterion | Status | Evidence files | Suggested demo commands | Notes |
+| --- | --- | --- | --- | --- |
+| Git/Git Flow | Partial | Git history, remote branches such as `develop` and `feature/*`, `.github/workflows/ci.yaml` triggers for `develop`, `master` and `main` | `git branch -a`; `git log --oneline --graph --decorate -n 10` | Continue using feature branches and Pull Requests into `develop`. |
+| Linux Operating Systems | Partial, improved | `scripts/monitor-system.sh`, `scripts/backup.sh`, `scripts/cleanup-logs.sh`, `scripts/install-cron.sh`, `logs/.gitkeep`, `backups/.gitkeep` | `bash -n scripts/*.sh`; `./scripts/monitor-system.sh`; `tail -n 50 logs/system-monitor.log` | Running scripts requires Linux, WSL or Git Bash. Cron requires `crontab`. |
+| Pipeline CI/CD | Implemented for validation | `.github/workflows/ci.yaml` | Open a PR into `develop`; inspect GitHub Actions run | CI installs dependencies, lints, tests, validates shell syntax, builds the app and validates Docker build. It does not deploy. |
+| Docker | Implemented for build/runtime evidence | `Dockerfile`, `docker-compose.yml`, `.dockerignore` | `docker build -t linux-devops-dashboard .`; `docker compose up --build` | Local validation requires Docker Desktop, Docker Engine or equivalent. CI validates Docker build on Ubuntu. |
+| Kubernetes | Partial, improved | `k8s/deployment.yaml`, `k8s/service.yaml`, `k8s/configmap.yaml`, `k8s/secret.example.yaml` | `kubectl apply -f k8s/`; `kubectl get pods`; `kubectl get svc`; `kubectl port-forward svc/linux-devops-dashboard 8080:80` | Requires `kubectl` and a cluster such as Docker Desktop Kubernetes, Minikube, Kind or remote cluster. |
+| Automated Tests | Implemented for core evidence | `vitest.config.ts`, `src/test/setup.ts`, `src/test/app-render.test.tsx`, `src/test/devops-evidence.test.ts`, `.github/workflows/ci.yaml` | `npm run test` | Tests validate app rendering, visible dashboard labels, theme toggle rendering and DevOps evidence files. |
+| Logs and Monitoring | Partial, improved | `scripts/monitor-system.sh`, `scripts/cleanup-logs.sh`, `logs/.gitkeep`, `.gitignore` | `./scripts/monitor-system.sh`; `ls -la logs`; `tail -n 50 logs/system-monitor.log` | Generated `.log` files are intentionally ignored and should not be committed. |
+| Configuration Management | Partial | `.env.example`, `k8s/configmap.yaml`, `k8s/secret.example.yaml` | `cat .env.example`; `kubectl apply -f k8s/configmap.yaml` | `.env.example` is documentation. Secret file is example-only and contains placeholders. |
+| Organization and Documentation | Implemented for presentation | `README.md`, `docs/evaluation-checklist.md`, `docs/presentation-script.md` | Open README and docs during presentation | Documentation describes current state, commands, limitations and future improvements. |

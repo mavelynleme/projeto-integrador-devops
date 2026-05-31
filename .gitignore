@@ -1,5 +1,6 @@
 # Logs
-logs
+logs/*
+!logs/.gitkeep
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -7,9 +8,16 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Backups
+backups/*
+!backups/.gitkeep
+*.tar.gz
+
 node_modules
 dist
 dist-ssr
+build
+coverage
 *.local
 
 # Editor directories and files
