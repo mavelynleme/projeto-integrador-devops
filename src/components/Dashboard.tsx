@@ -46,6 +46,25 @@ const formatUptime = (min: number) => {
 const coreUsages = Array.from({ length: SYSTEM.cpus }, (_, i) => 25 + ((i * 37) % 55));
 const cpuAverage = Math.round(coreUsages.reduce((a, b) => a + b, 0) / coreUsages.length);
 
+const evaluationEvidence = [
+  { title: "Git Flow", evidence: "Branches develop e feature/* documentadas no historico do repositorio." },
+  { title: "Linux Scripts", evidence: "Automacao operacional em scripts/*.sh com Bash e validacao no CI." },
+  { title: "CI/CD", evidence: "Pipeline em .github/workflows/ci.yaml executa lint, testes, build e Docker build." },
+  { title: "Docker", evidence: "Dockerfile e docker-compose.yml empacotam o dashboard estatico com Nginx." },
+  { title: "Kubernetes", evidence: "Manifestos k8s/*.yaml definem Deployment, Service, ConfigMap e Secret example." },
+  { title: "Automated Tests", evidence: "Testes Vitest validam renderizacao do app e evidencias DevOps." },
+  { title: "Logs and Monitoring", evidence: "Scripts geram logs locais em logs/ e mantem logs gerados fora do Git." },
+  { title: "Configuration Management", evidence: ".env.example e k8s/configmap.yaml documentam configuracoes seguras." },
+  { title: "Documentation", evidence: "README.md e docs/*.md organizam avaliacao, roteiro e prontidao final." },
+];
+
+const healthEvidence = [
+  { label: "Docker Compose healthcheck", value: "docker-compose.yml verifica HTTP / no container." },
+  { label: "Kubernetes readinessProbe", value: "k8s/deployment.yaml valida prontidao via HTTP GET /." },
+  { label: "Kubernetes livenessProbe", value: "k8s/deployment.yaml valida saude via HTTP GET /." },
+  { label: "CI validation", value: ".github/workflows/ci.yaml valida lint, testes, build, Bash e Docker build." },
+];
+
 function GlowCard({
   children,
   className = "",
@@ -159,6 +178,12 @@ export default function Dashboard() {
             Visão em tempo real de <span className="text-foreground">{SYSTEM.hostname}</span> ·{" "}
             {SYSTEM.platform} · {SYSTEM.arch}
           </p>
+          <div className="mt-5 max-w-3xl rounded-xl border border-primary/30 bg-secondary/40 p-4 text-sm text-muted-foreground backdrop-blur-md">
+            <span className="font-bold uppercase tracking-wider text-primary">Demo Mode</span>
+            <span className="mx-2 text-border">|</span>
+            Dados do dashboard sao simulados para demonstracao academica. A automacao operacional existe nos scripts e
+            no pipeline; execucao local de Docker e Kubernetes exige as ferramentas correspondentes instaladas.
+          </div>
         </div>
       </header>
 
@@ -269,6 +294,46 @@ export default function Dashboard() {
               <div className="text-status-success">↳ 64 bytes · time=0.4ms</div>
               <div>$ uname -s</div>
               <div className="text-foreground">↳ {SYSTEM.platform}</div>
+            </div>
+          </GlowCard>
+        </section>
+
+        <section>
+          <div className="mb-4">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-primary">Avaliacao DevOps</p>
+            <h2 className="mt-1 text-2xl font-black text-foreground">DevOps Evaluation Evidence</h2>
+            <p className="mt-2 max-w-3xl text-sm text-muted-foreground">
+              Evidencias do projeto organizadas para apresentacao. Esta area referencia artefatos existentes no
+              repositorio; nao representa metricas reais em tempo real.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {evaluationEvidence.map((item) => (
+              <GlowCard key={item.title}>
+                <div className="mb-3 inline-flex rounded-full border border-primary/30 bg-secondary/40 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
+                  Evidencia
+                </div>
+                <h3 className="text-base font-bold text-foreground">{item.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.evidence}</p>
+              </GlowCard>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <GlowCard>
+            <SectionTitle
+              icon={<Activity className="h-5 w-5 text-primary" />}
+              title="Health Check Evidence"
+            />
+            <p className="mb-4 text-sm text-muted-foreground">
+              Validacoes declaradas para demonstracao DevOps. Docker, Kubernetes e CI dependem dos respectivos
+              ambientes de execucao.
+            </p>
+            <div className="grid grid-cols-1 gap-x-6 md:grid-cols-2">
+              {healthEvidence.map((item) => (
+                <Row key={item.label} label={item.label} value={item.value} />
+              ))}
             </div>
           </GlowCard>
         </section>
