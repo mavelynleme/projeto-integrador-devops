@@ -122,6 +122,7 @@ O projeto tambem possui artefatos iniciais para demonstrar praticas de DevOps:
 |-- .dockerignore
 |-- .env.example
 |-- Dockerfile
+|-- docker-compose.yml
 |-- deploy.sh
 |-- package.json
 |-- package-lock.json
@@ -173,16 +174,67 @@ Arquivo: `.github/workflows/ci.yaml`
 
 ## Docker
 
-O projeto possui um `Dockerfile` multi-stage:
+O projeto possui um `Dockerfile` multi-stage para producao:
 
-1. Usa Node.js para instalar dependencias e gerar o build com Vite.
+1. Usa Node.js para instalar dependencias com `npm ci` e gerar o build com Vite.
 2. Usa Nginx para servir os arquivos estaticos gerados em `dist/`.
 
-Exemplo de build:
+Para validar localmente, e necessario ter Docker instalado, como Docker Desktop, WSL com Docker ou outro ambiente Linux com Docker Engine.
+
+### Build da imagem
 
 ```bash
-docker build -t projeto-integrador-devops .
+docker build -t linux-devops-dashboard .
 ```
+
+### Execucao com Docker
+
+```bash
+docker run --name linux-devops-dashboard -p 8080:80 linux-devops-dashboard
+```
+
+Acesse no navegador:
+
+```text
+http://localhost:8080
+```
+
+Para parar e remover o container:
+
+```bash
+docker stop linux-devops-dashboard
+docker rm linux-devops-dashboard
+```
+
+### Execucao com Docker Compose
+
+O arquivo `docker-compose.yml` define o servico `linux-devops-dashboard`, faz build a partir do diretorio atual, expõe a porta `8080` do host para a porta `80` do Nginx e usa `restart: unless-stopped`.
+
+```bash
+docker compose up --build
+```
+
+Acesse:
+
+```text
+http://localhost:8080
+```
+
+Para parar:
+
+```bash
+docker compose down
+```
+
+### O que Docker demonstra neste projeto
+
+- empacotamento da aplicacao frontend
+- build reproduzivel com `npm ci`
+- separacao entre etapa de build e runtime
+- servidor Nginx leve para arquivos estaticos
+- exposicao de portas entre host e container
+- healthcheck simples no container via Docker Compose
+- uso de `.dockerignore` para reduzir contexto de build e evitar arquivos desnecessarios
 
 ---
 
