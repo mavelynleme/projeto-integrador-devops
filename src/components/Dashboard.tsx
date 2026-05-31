@@ -7,6 +7,7 @@ import {
   Timer,
   User,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
 import iconCpu from "@/assets/icon-cpu.png";
 import iconRam from "@/assets/icon-ram.png";
@@ -166,7 +167,15 @@ export default function Dashboard() {
               <span className="inline-block h-2 w-2 animate-glow-pulse rounded-full bg-primary shadow-glow" />
               Sistema online
             </div>
-            <ThemeToggle />
+            <div className="flex flex-col items-end gap-2 sm:flex-row">
+              <Link
+                to="/"
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-card/80 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-foreground shadow-card backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/60 hover:shadow-glow"
+              >
+                ← Voltar ao início
+              </Link>
+              <ThemeToggle />
+            </div>
           </div>
           <h1 className="mt-3 text-4xl font-black leading-tight md:text-6xl">
             Monitor de{" "}
