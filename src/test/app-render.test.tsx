@@ -28,6 +28,7 @@ describe("application rendering", () => {
     expect(screen.getByText("CPU")).toBeInTheDocument();
     expect(screen.getAllByText("Uptime").length).toBeGreaterThan(0);
     expect(screen.getByText("Sistema online")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /voltar ao início/i })).toHaveAttribute("href", "/");
   });
 
   it("renders the theme toggle as an accessible button", () => {
