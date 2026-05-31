@@ -12,6 +12,8 @@ yarn-error.log*
 pnpm-debug.log*
 bun.lockb
 coverage
+logs
+backups
 .DS_Store
 Thumbs.db
 *.local
