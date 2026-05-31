@@ -56,8 +56,9 @@ O projeto tambem possui artefatos iniciais para demonstrar praticas de DevOps:
 | Kubernetes | `k8s/deployment.yaml` presente |
 | CI/CD | GitHub Actions em `.github/workflows/ci.yaml` |
 | Testes | Vitest configurado com testes basicos |
-| Shell script | `deploy.sh` presente |
-| Logs | Pasta e fluxo de logs ainda pendentes |
+| Shell script | `deploy.sh` e scripts operacionais em `scripts/` |
+| Logs | `logs/` criado para evidencias geradas pelos scripts |
+| Backups | `backups/` criado para arquivos `.tar.gz` gerados pelo script de backup |
 | Configuracao | `.env.example` documenta variaveis iniciais |
 
 ---
@@ -102,6 +103,15 @@ O projeto tambem possui artefatos iniciais para demonstrar praticas de DevOps:
 |-- k8s/
 |   `-- deployment.yaml
 |-- public/
+|-- backups/
+|   `-- .gitkeep
+|-- logs/
+|   `-- .gitkeep
+|-- scripts/
+|   |-- backup.sh
+|   |-- cleanup-logs.sh
+|   |-- install-cron.sh
+|   `-- monitor-system.sh
 |-- src/
 |   |-- assets/
 |   |-- components/
@@ -191,9 +201,104 @@ Esse manifesto ainda deve ser validado em um cluster local ou ambiente de demons
 
 ## Automacao Linux
 
-O arquivo `deploy.sh` existe como script inicial de automacao. Ele verifica recursos do sistema Linux, valida Docker/kubectl, executa build da imagem Docker e aplica o manifesto Kubernetes quando `kubectl` esta disponivel.
+O arquivo `deploy.sh` existe como script inicial de deploy. Ele verifica recursos do sistema Linux, valida Docker/kubectl, executa build da imagem Docker e aplica o manifesto Kubernetes quando `kubectl` esta disponivel.
 
-Scripts separados para monitoramento, backup e coleta de logs ainda estao pendentes.
+Tambem existem scripts operacionais em `scripts/` para demonstrar conceitos de Sistemas Operacionais Linux, automacao, logs, backup e agendamento com cron.
+
+### Permissao de execucao
+
+Em Linux, WSL ou Git Bash, conceda permissao de execucao com:
+
+```bash
+chmod +x scripts/*.sh
+```
+
+### Monitoramento do sistema
+
+Executa uma coleta operacional e registra em `logs/system-monitor.log`.
+
+```bash
+./scripts/monitor-system.sh
+```
+
+O script coleta:
+
+- data e horario
+- hostname
+- usuario atual
+- uptime
+- load average
+- uso de memoria
+- uso de disco
+- quantidade de processos
+- principais processos por CPU, quando disponivel
+
+### Backup do projeto
+
+Cria um backup `.tar.gz` timestampado em `backups/` e registra a execucao em `logs/backup.log`.
+
+```bash
+./scripts/backup.sh
+```
+
+O backup exclui arquivos gerados ou sensiveis, como `node_modules`, `dist`, `build`, `.git`, `backups`, `logs`, `.env` e `coverage`.
+
+### Limpeza de logs
+
+Remove arquivos `.log` antigos em `logs/` e registra a execucao em `logs/cleanup.log`.
+
+```bash
+./scripts/cleanup-logs.sh
+```
+
+Por padrao, a retencao e de 7 dias. Para alterar:
+
+```bash
+LOG_RETENTION_DAYS=3 ./scripts/cleanup-logs.sh
+```
+
+### Agendamento com cron
+
+Instala uma entrada no cron para executar `scripts/monitor-system.sh` a cada 5 minutos.
+
+```bash
+./scripts/install-cron.sh
+```
+
+O script evita entradas duplicadas e registra a configuracao em `logs/cron-install.log`. Se `crontab` nao estiver disponivel, ele exibe um aviso claro.
+
+Para conferir o cron instalado:
+
+```bash
+crontab -l
+```
+
+### Inspecao dos logs
+
+```bash
+ls -la logs
+tail -n 50 logs/system-monitor.log
+tail -n 50 logs/backup.log
+tail -n 50 logs/cleanup.log
+tail -n 50 logs/cron-install.log
+```
+
+Arquivos `.log` e backups `.tar.gz` sao gerados localmente e nao devem ser commitados. Apenas os arquivos `.gitkeep` mantem as pastas `logs/` e `backups/` versionadas.
+
+### Conceitos de Sistemas Operacionais demonstrados
+
+- processos e listagem com `ps`
+- usuario atual e contexto de execucao com `whoami`
+- hostname da maquina
+- uptime do sistema
+- load average via `/proc/loadavg`
+- uso de memoria com `free`
+- uso de disco com `df`
+- automacao com Bash e `set -euo pipefail`
+- persistencia de logs
+- backup compactado com `tar`
+- retencao e limpeza de arquivos com `find`
+- agendamento de tarefas com cron
 
 ---
 

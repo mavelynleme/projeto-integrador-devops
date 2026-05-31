@@ -29,5 +29,12 @@ jobs:
       - name: Executar testes
         run: npm run test
 
+      - name: Validar sintaxe dos scripts shell
+        run: |
+          bash -n scripts/monitor-system.sh
+          bash -n scripts/backup.sh
+          bash -n scripts/cleanup-logs.sh
+          bash -n scripts/install-cron.sh
+
       - name: Validar build
         run: npm run build
