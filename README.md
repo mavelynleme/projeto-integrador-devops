@@ -53,7 +53,7 @@ O projeto tambem possui artefatos iniciais para demonstrar praticas de DevOps:
 | Backend/API | Nao existe ainda |
 | Dados do dashboard | Hardcoded/mocados no frontend |
 | Docker | `Dockerfile` presente |
-| Kubernetes | `k8s/deployment.yaml` presente |
+| Kubernetes | Manifestos em `k8s/` para Deployment, Service, ConfigMap e Secret de exemplo |
 | CI/CD | GitHub Actions em `.github/workflows/ci.yaml` |
 | Testes | Vitest configurado com testes basicos |
 | Shell script | `deploy.sh` e scripts operacionais em `scripts/` |
@@ -101,7 +101,10 @@ O projeto tambem possui artefatos iniciais para demonstrar praticas de DevOps:
 |-- docs/
 |   `-- evaluation-checklist.md
 |-- k8s/
-|   `-- deployment.yaml
+|   |-- configmap.yaml
+|   |-- deployment.yaml
+|   |-- secret.example.yaml
+|   `-- service.yaml
 |-- public/
 |-- backups/
 |   `-- .gitkeep
@@ -240,14 +243,58 @@ docker compose down
 
 ## Kubernetes
 
-O manifesto inicial esta em `k8s/deployment.yaml` e define:
+Os manifestos Kubernetes estao em `k8s/` e demonstram como executar o dashboard em um cluster.
 
-- Deployment da aplicacao
-- Service do tipo NodePort
-- requests e limits basicos de CPU/memoria
-- 2 replicas
+Arquivos principais:
 
-Esse manifesto ainda deve ser validado em um cluster local ou ambiente de demonstracao.
+- `k8s/deployment.yaml`: Deployment com 2 replicas, probes HTTP e requests/limits de CPU e memoria
+- `k8s/service.yaml`: Service `ClusterIP` expondo a porta 80 dentro do cluster
+- `k8s/configmap.yaml`: configuracoes nao sensiveis como `APP_NAME`, `NODE_ENV` e `LOG_LEVEL`
+- `k8s/secret.example.yaml`: exemplo com placeholders, sem segredos reais
+
+Para validar localmente, e necessario ter `kubectl` e um cluster Kubernetes, como Docker Desktop Kubernetes, Minikube, Kind ou um cluster remoto.
+
+### Aplicar os manifestos
+
+```bash
+kubectl apply -f k8s/
+```
+
+### Inspecionar recursos
+
+```bash
+kubectl get pods
+kubectl get svc
+kubectl get deployments
+```
+
+### Acessar com port-forward
+
+```bash
+kubectl port-forward svc/linux-devops-dashboard 8080:80
+```
+
+Acesse no navegador:
+
+```text
+http://localhost:8080
+```
+
+### Remover recursos
+
+```bash
+kubectl delete -f k8s/
+```
+
+### O que Kubernetes demonstra neste projeto
+
+- declaracao de estado desejado com manifests YAML
+- replicas para disponibilidade basica
+- Service para descoberta interna da aplicacao
+- ConfigMap para configuracao nao sensivel
+- exemplo de Secret sem valores reais
+- readinessProbe e livenessProbe para saude da aplicacao
+- requests e limits para controle de recursos
 
 ---
 
