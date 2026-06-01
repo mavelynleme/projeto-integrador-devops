@@ -358,9 +358,18 @@ kubectl port-forward svc/linux-devops-dashboard 8080:80
 
 Docker e Kubernetes dependem de ferramentas locais instaladas. Em maquinas Windows, use Docker Desktop, WSL, Minikube, Kind ou um cluster remoto.
 
+## Validação local com Docker e Kubernetes
+
+A validacao local registrou o build Docker da aplicacao, a execucao com Docker Compose em `http://localhost:8080` e o uso de um cluster Kubernetes local pelo Docker Desktop.
+
+No Kubernetes, foram validados o Deployment com 2 replicas disponiveis, os Pods em estado `Running`, o Service do tipo `ClusterIP` e o acesso via port-forward em `http://localhost:8081`.
+
+As evidencias completas, incluindo screenshots, estao em [docs/local-docker-kubernetes-validation.md](docs/local-docker-kubernetes-validation.md).
+
 ## Documentacao de Apoio
 
 - `docs/evaluation-checklist.md`: mapeamento dos criterios de avaliacao para evidencias.
+- `docs/local-docker-kubernetes-validation.md`: validacao local com Docker, Docker Compose e Kubernetes.
 - `docs/presentation-script.md`: roteiro para apresentacao.
 
 ## Melhorias Futuras
