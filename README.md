@@ -6,9 +6,9 @@ Projeto Integrador de DevOps e Sistemas Operacionais com uma aplicação fronten
 
 ## Objetivo
 
-Demonstrar, em um projeto academico, como uma aplicação web pode ser organizada com práticas de DevOps e conceitos de Sistemas Operacionais Linux. O foco do trabalho não é apenas a interface, mas o ecossistema ao redor dela: automação, containerização, orquestração, pipeline, testes, logs e documentação.
+Demonstrar, em um projeto acadêmico, como uma aplicação web pode ser organizada com práticas de DevOps e conceitos de Sistemas Operacionais Linux. O foco do trabalho não é apenas a interface, mas o ecossistema ao redor dela: automação, containerização, orquestração, pipeline, testes, logs e documentação.
 
-## Contexto Acadêmico 
+## Contexto Acadêmico
 
 Este projeto atende a critérios comuns de avaliação em disciplinas de DevOps e Sistemas Operacionais:
 
@@ -20,12 +20,12 @@ Este projeto atende a critérios comuns de avaliação em disciplinas de DevOps 
 - CI/CD com GitHub Actions
 - Testes automatizados
 - Logs e monitoramento
-- Gerenciamento de configuração 
-- Documentação e prontidão para apresentação 
+- Gerenciamento de configuração
+- Documentação e prontidão para apresentação
 
 ## Tecnologias
 
-| Area | Tecnologias |
+| Área | Tecnologias |
 | --- | --- |
 | Frontend | React, Vite, TypeScript |
 | UI | Tailwind CSS, Radix UI/shadcn-style components, Lucide React |
@@ -35,7 +35,7 @@ Este projeto atende a critérios comuns de avaliação em disciplinas de DevOps 
 | Linux | Bash, cron, comandos GNU/Linux |
 | Containers | Docker, Docker Compose, Nginx |
 | Kubernetes | Deployment, Service, ConfigMap, Secret example |
-| Configuracao | `.env.example`, ConfigMap Kubernetes |
+| Configuração | `.env.example`, ConfigMap Kubernetes |
 
 ## Arquitetura
 
@@ -55,7 +55,7 @@ Nginx no container Docker
 Docker Compose ou Kubernetes Service
 ```
 
-O dashboard e uma aplicação frontend estatica. O Dockerfile gera o build com Node.js e serve o resultado com Nginx. No Kubernetes, o Deployment usa a imagem `linux-devops-dashboard:latest` e o Service expõe a aplicação dentro do cluster.
+O dashboard é uma aplicação frontend estática. O Dockerfile gera o build com Node.js e serve o resultado com Nginx. No Kubernetes, o Deployment usa a imagem `linux-devops-dashboard:latest` e o Service expõe a aplicação dentro do cluster.
 
 ## Estrutura
 
@@ -97,7 +97,7 @@ O dashboard e uma aplicação frontend estatica. O Dockerfile gera o build com N
 
 ## Git Flow
 
-O repositorio possui historico com branches como `develop` e `feature/*`. A estrategia recomendada para a demonstracao e:
+O repositório possui histórico com branches como `develop` e `feature/*`. A estratégia recomendada para a demonstração é:
 
 ```bash
 git checkout develop
@@ -107,11 +107,11 @@ git commit -m "feat: descreve a melhoria"
 git push origin feature/nome-da-etapa
 ```
 
-Pull Requests devem ser abertos para `develop`. O CI esta configurado para rodar em `develop`, `master` e `main`, tanto em `push` quanto em `pull_request`.
+Pull Requests devem ser abertos para `develop`. O CI está configurado para rodar em `develop`, `master` e `main`, tanto em `push` quanto em `pull_request`.
 
 ## Ambiente Local
 
-Instale dependências:
+Instale as dependências:
 
 ```bash
 npm ci
@@ -133,7 +133,7 @@ npm run build
 
 ## Variáveis de Ambiente
 
-O arquivo `.env.example` documenta variaveis seguras:
+O arquivo `.env.example` documenta variáveis seguras:
 
 ```env
 VITE_APP_NAME="Projeto Integrador DevOps"
@@ -141,7 +141,7 @@ VITE_API_BASE_URL=""
 NODE_ENV="development"
 ```
 
-Atualmente o dashboard nao consome API real. `VITE_API_BASE_URL` fica reservado para uma futura integracao.
+Atualmente o dashboard não consome API real. `VITE_API_BASE_URL` fica reservado para uma futura integração.
 
 ## Testes Automatizados
 
@@ -155,7 +155,7 @@ Os testes verificam:
 
 - renderização da aplicação principal
 - textos operacionais do dashboard
-- botão de tema como controle acessivel
+- botão de tema como controle acessível
 - existência de evidências DevOps, como Docker Compose, manifests Kubernetes, scripts Linux e workflow de CI
 - trechos essenciais de Docker Compose, Kubernetes Deployment e GitHub Actions
 
@@ -224,19 +224,19 @@ crontab -l
 Conceitos demonstrados:
 
 - processos com `ps`
-- usuario com `whoami`
+- usuário com `whoami`
 - hostname com `hostname`
 - uptime e load average
-- memoria com `free`
+- memória com `free`
 - disco com `df`
 - `/proc/loadavg`
-- compactacao com `tar`
+- compactação com `tar`
 - limpeza com `find`
 - agendamento com cron
 
 ## Logs e Backups
 
-Diretorios versionados:
+Diretórios versionados:
 
 - `logs/.gitkeep`
 - `backups/.gitkeep`
@@ -260,8 +260,8 @@ tail -n 50 logs/cron-install.log
 
 O Dockerfile usa multi-stage build:
 
-1. `node:20-alpine` instala dependencias com `npm ci` e executa o build.
-2. `nginx:1.25-alpine` serve os arquivos estaticos.
+1. `node:20-alpine` instala dependências com `npm ci` e executa o build.
+2. `nginx:1.25-alpine` serve os arquivos estáticos.
 
 Docker local requer Docker Desktop, Docker Engine, WSL com Docker ou ambiente equivalente.
 
@@ -301,7 +301,7 @@ docker compose down
 
 Manifests em `k8s/`:
 
-- `deployment.yaml`: 2 replicas, probes HTTP e requests/limits
+- `deployment.yaml`: 2 réplicas, probes HTTP e requests/limits
 - `service.yaml`: Service `ClusterIP` na porta 80
 - `configmap.yaml`: `APP_NAME`, `NODE_ENV`, `LOG_LEVEL`
 - `secret.example.yaml`: exemplo sem segredos reais
@@ -340,7 +340,7 @@ Remover:
 kubectl delete -f k8s/
 ```
 
-## Comandos de Demonstração 
+## Comandos de Demonstração
 
 ```bash
 git branch -a
@@ -356,32 +356,28 @@ kubectl get pods
 kubectl port-forward svc/linux-devops-dashboard 8080:80
 ```
 
-Docker e Kubernetes dependem de ferramentas locais instaladas. Em maquinas Windows, use Docker Desktop, WSL, Minikube, Kind ou um cluster remoto.
-
+Docker e Kubernetes dependem de ferramentas locais instaladas. Em máquinas Windows, use Docker Desktop, WSL, Minikube, Kind ou um cluster remoto.
 
 ## Validação local com Docker e Kubernetes
 
-A validacao local registrou o build Docker da aplicacao, a execucao com Docker Compose em `http://localhost:8080` e o uso de um cluster Kubernetes local pelo Docker Desktop.
+A validação local registrou o build Docker da aplicação, a execução com Docker Compose em `http://localhost:8080` e o uso de um cluster Kubernetes local pelo Docker Desktop.
 
-No Kubernetes, foram validados o Deployment com 2 replicas disponiveis, os Pods em estado `Running`, o Service do tipo `ClusterIP` e o acesso via port-forward em `http://localhost:8081`.
+No Kubernetes, foram validados o Deployment com 2 réplicas disponíveis, os Pods em estado `Running`, o Service do tipo `ClusterIP` e o acesso via port-forward em `http://localhost:8081`.
 
-As evidencias completas, incluindo screenshots, estao em [docs/local-docker-kubernetes-validation.md](docs/local-docker-kubernetes-validation.md).
-
-## Documentacao de Apoio
+As evidências completas, incluindo screenshots, estão em [docs/local-docker-kubernetes-validation.md](docs/local-docker-kubernetes-validation.md).
 
 ## Documentação de Apoio
 
-
-- `docs/evaluation-checklist.md`: mapeamento dos criterios de avaliacao para evidencias.
-- `docs/local-docker-kubernetes-validation.md`: validacao local com Docker, Docker Compose e Kubernetes.
-- `docs/presentation-script.md`: roteiro para apresentacao.
+- `docs/evaluation-checklist.md`: mapeamento dos critérios de avaliação para evidências.
+- `docs/local-docker-kubernetes-validation.md`: validação local com Docker, Docker Compose e Kubernetes.
+- `docs/presentation-script.md`: roteiro para apresentação.
 
 ## Melhorias Futuras
 
-- backend/API real para coletar metricas do sistema
-- integracao do dashboard com dados reais
+- backend/API real para coletar métricas do sistema
+- integração do dashboard com dados reais
 - cobertura de testes mais ampla
-- publicacao de imagem em registry
+- publicação de imagem em registry
 - deploy em cluster real
 - observabilidade com ferramentas como Prometheus/Grafana
-- documentacao de troubleshooting por ambiente
+- documentação de troubleshooting por ambiente
