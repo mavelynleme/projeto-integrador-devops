@@ -1,6 +1,6 @@
 # Roteiro de Apresentação
 
-Use este roteiro como guia prático para a apresentação final. Ajuste o tempo conforme o formato da aula.
+
 
 ## 1. Introdução do Projeto
 
