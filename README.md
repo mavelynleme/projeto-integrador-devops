@@ -1,27 +1,27 @@
 # Linux DevOps Monitoring Dashboard
 
-Projeto Integrador de DevOps e Sistemas Operacionais com uma aplicacao frontend em React/Vite/TypeScript e evidencias praticas de Git Flow, automacao Linux, Shell Script, Docker, Kubernetes, CI/CD, testes automatizados, logs, backups, configuracao e documentacao.
+Projeto Integrador de DevOps e Sistemas Operacionais com uma aplicação frontend em React/Vite/TypeScript e evidências práticas de Git Flow, automação Linux, Shell Script, Docker, Kubernetes, CI/CD, testes automatizados, logs, backups, configuração e documentação.
 
-> O dashboard visual foi preservado durante as etapas de DevOps. Os dados exibidos na interface ainda sao simulados no frontend; nao existe backend ou API neste repositorio.
+> O dashboard visual foi preservado durante as etapas de DevOps. Os dados exibidos na interface ainda são simulados no frontend; não existe backend ou API neste repositório.
 
 ## Objetivo
 
-Demonstrar, em um projeto academico, como uma aplicacao web pode ser organizada com praticas de DevOps e conceitos de Sistemas Operacionais Linux. O foco do trabalho nao e apenas a interface, mas o ecossistema ao redor dela: automacao, conteinerizacao, orquestracao, pipeline, testes, logs e documentacao.
+Demonstrar, em um projeto academico, como uma aplicação web pode ser organizada com práticas de DevOps e conceitos de Sistemas Operacionais Linux. O foco do trabalho não é apenas a interface, mas o ecossistema ao redor dela: automação, containerização, orquestração, pipeline, testes, logs e documentação.
 
-## Contexto Academico
+## Contexto Acadêmico 
 
-Este projeto atende a criterios comuns de avaliacao em disciplinas de DevOps e Sistemas Operacionais:
+Este projeto atende a critérios comuns de avaliação em disciplinas de DevOps e Sistemas Operacionais:
 
 - Git e Git Flow
-- conceitos de Linux
-- automacao com Shell Script
+- Conceitos de Linux
+- Automação com Shell Script
 - Docker
 - Kubernetes
 - CI/CD com GitHub Actions
-- testes automatizados
-- logs e monitoramento
-- gerenciamento de configuracao
-- documentacao e prontidao para apresentacao
+- Testes automatizados
+- Logs e monitoramento
+- Gerenciamento de configuração 
+- Documentação e prontidão para apresentação 
 
 ## Tecnologias
 
@@ -55,7 +55,7 @@ Nginx no container Docker
 Docker Compose ou Kubernetes Service
 ```
 
-O dashboard e uma aplicacao frontend estatica. O Dockerfile gera o build com Node.js e serve o resultado com Nginx. No Kubernetes, o Deployment usa a imagem `linux-devops-dashboard:latest` e o Service expõe a aplicacao dentro do cluster.
+O dashboard e uma aplicação frontend estatica. O Dockerfile gera o build com Node.js e serve o resultado com Nginx. No Kubernetes, o Deployment usa a imagem `linux-devops-dashboard:latest` e o Service expõe a aplicação dentro do cluster.
 
 ## Estrutura
 
@@ -111,7 +111,7 @@ Pull Requests devem ser abertos para `develop`. O CI esta configurado para rodar
 
 ## Ambiente Local
 
-Instale dependencias:
+Instale dependências:
 
 ```bash
 npm ci
@@ -123,7 +123,7 @@ Execute em desenvolvimento:
 npm run dev
 ```
 
-Validacoes principais:
+Validações principais:
 
 ```bash
 npm run lint
@@ -131,7 +131,7 @@ npm run test
 npm run build
 ```
 
-## Variaveis de Ambiente
+## Variáveis de Ambiente
 
 O arquivo `.env.example` documenta variaveis seguras:
 
@@ -153,13 +153,13 @@ npm run test
 
 Os testes verificam:
 
-- renderizacao da aplicacao principal
+- renderização da aplicação principal
 - textos operacionais do dashboard
-- botao de tema como controle acessivel
-- existencia de evidencias DevOps, como Docker Compose, manifests Kubernetes, scripts Linux e workflow de CI
+- botão de tema como controle acessivel
+- existência de evidências DevOps, como Docker Compose, manifests Kubernetes, scripts Linux e workflow de CI
 - trechos essenciais de Docker Compose, Kubernetes Deployment e GitHub Actions
 
-Os testes nao exigem Docker, Kubernetes, Bash ou `kubectl`.
+Os testes não exigem Docker, Kubernetes, Bash ou `kubectl`.
 
 ## CI/CD
 
@@ -174,13 +174,13 @@ O GitHub Actions executa:
 5. `npm run build`
 6. `docker build -t linux-devops-dashboard:ci .`
 
-O pipeline nao faz deploy e nao envia imagem para registry.
+O pipeline não faz deploy e não envia imagem para registry.
 
 ## Linux e Shell Scripts
 
 Os scripts ficam em `scripts/` e usam Bash com `set -euo pipefail`.
 
-Dar permissao de execucao em Linux, WSL ou Git Bash:
+Dar permissão de execução em Linux, WSL ou Git Bash:
 
 ```bash
 chmod +x scripts/*.sh
@@ -241,12 +241,12 @@ Diretorios versionados:
 - `logs/.gitkeep`
 - `backups/.gitkeep`
 
-Arquivos gerados localmente nao devem ser commitados:
+Arquivos gerados localmente não devem ser commitados:
 
 - `logs/*.log`
 - `backups/*.tar.gz`
 
-Inspecao:
+Inspeção:
 
 ```bash
 ls -la logs backups
@@ -306,7 +306,7 @@ Manifests em `k8s/`:
 - `configmap.yaml`: `APP_NAME`, `NODE_ENV`, `LOG_LEVEL`
 - `secret.example.yaml`: exemplo sem segredos reais
 
-Validacao local requer `kubectl` e um cluster, como Docker Desktop Kubernetes, Minikube, Kind ou cluster remoto.
+Validação local requer `kubectl` e um cluster, como Docker Desktop Kubernetes, Minikube, Kind ou cluster remoto.
 
 Aplicar:
 
@@ -340,7 +340,7 @@ Remover:
 kubectl delete -f k8s/
 ```
 
-## Comandos de Demonstracao
+## Comandos de Demonstração 
 
 ```bash
 git branch -a
@@ -358,6 +358,7 @@ kubectl port-forward svc/linux-devops-dashboard 8080:80
 
 Docker e Kubernetes dependem de ferramentas locais instaladas. Em maquinas Windows, use Docker Desktop, WSL, Minikube, Kind ou um cluster remoto.
 
+
 ## Validação local com Docker e Kubernetes
 
 A validacao local registrou o build Docker da aplicacao, a execucao com Docker Compose em `http://localhost:8080` e o uso de um cluster Kubernetes local pelo Docker Desktop.
@@ -367,6 +368,9 @@ No Kubernetes, foram validados o Deployment com 2 replicas disponiveis, os Pods 
 As evidencias completas, incluindo screenshots, estao em [docs/local-docker-kubernetes-validation.md](docs/local-docker-kubernetes-validation.md).
 
 ## Documentacao de Apoio
+
+## Documentação de Apoio
+
 
 - `docs/evaluation-checklist.md`: mapeamento dos criterios de avaliacao para evidencias.
 - `docs/local-docker-kubernetes-validation.md`: validacao local com Docker, Docker Compose e Kubernetes.
