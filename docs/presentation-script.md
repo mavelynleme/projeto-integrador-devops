@@ -1,47 +1,47 @@
-# Presentation Script
+# Roteiro de Apresentação
 
-Use this roteiro as a practical guide for the final presentation. Adapt timing to the class format.
+Use este roteiro como guia prático para a apresentação final. Ajuste o tempo conforme o formato da aula.
 
-## 1. Project Introduction
+## 1. Introdução do Projeto
 
-- Present the project name: Linux DevOps Monitoring Dashboard.
-- Explain that the application is a React/Vite/TypeScript dashboard.
-- Clarify that the dashboard metrics are simulated in the frontend today, and the project focus is the DevOps and Operating Systems ecosystem around the app.
-- Show the main repository folders: `src/`, `scripts/`, `k8s/`, `.github/workflows/`, `docs/`, `logs/` and `backups/`.
+- Apresentar o nome do projeto: Linux DevOps Monitoring Dashboard.
+- Explicar que a aplicação é um dashboard React/Vite/TypeScript.
+- Esclarecer que as métricas do dashboard são simuladas no frontend atualmente, e que o foco do projeto é o ecossistema de DevOps e Sistemas Operacionais ao redor da aplicação.
+- Mostrar as principais pastas do repositório: `src/`, `scripts/`, `k8s/`, `.github/workflows/`, `docs/`, `logs/` e `backups/`.
 
-## 2. Git Flow Demonstration
+## 2. Demonstração de Git Flow
 
-Suggested commands:
+Comandos sugeridos:
 
 ```bash
 git branch -a
 git log --oneline --graph --decorate -n 10
 ```
 
-Talking points:
+Pontos de fala:
 
-- Explain the role of `develop` as the integration branch.
-- Explain feature branches such as `feature/nome-da-etapa`.
-- Explain that Pull Requests into `develop` trigger CI.
+- Explicar o papel de `develop` como branch de integração.
+- Explicar branches de feature, como `feature/nome-da-etapa`.
+- Explicar que Pull Requests para `develop` acionam o CI.
 
-## 3. Dashboard Demonstration
+## 3. Demonstração do Dashboard
 
-Suggested commands:
+Comandos sugeridos:
 
 ```bash
 npm ci
 npm run dev
 ```
 
-Talking points:
+Pontos de fala:
 
-- Open the local Vite URL.
-- Show the dashboard title and operational labels such as CPU, RAM and uptime.
-- Explain that the layout was preserved while DevOps features were added around it.
+- Abrir a URL local do Vite.
+- Mostrar o título do dashboard e rótulos operacionais como CPU, RAM e uptime.
+- Explicar que o layout foi preservado enquanto recursos de DevOps foram adicionados ao redor dele.
 
-## 4. Linux Scripts Demonstration
+## 4. Demonstração dos Scripts Linux
 
-Suggested commands on Linux, WSL or Git Bash:
+Comandos sugeridos em Linux, WSL ou Git Bash:
 
 ```bash
 chmod +x scripts/*.sh
@@ -51,16 +51,16 @@ bash -n scripts/*.sh
 ./scripts/cleanup-logs.sh
 ```
 
-Talking points:
+Pontos de fala:
 
-- `monitor-system.sh` collects hostname, user, uptime, load average, memory, disk and process data.
-- `backup.sh` creates a timestamped `.tar.gz` backup.
-- `cleanup-logs.sh` removes old logs based on retention.
-- `install-cron.sh` installs monitoring every 5 minutes when `crontab` exists.
+- `monitor-system.sh` coleta hostname, usuário, uptime, load average, memória, disco e dados de processos.
+- `backup.sh` cria um backup `.tar.gz` com timestamp.
+- `cleanup-logs.sh` remove logs antigos com base na retenção.
+- `install-cron.sh` instala o monitoramento a cada 5 minutos quando `crontab` existe.
 
-## 5. Logs Demonstration
+## 5. Demonstração de Logs
 
-Suggested commands:
+Comandos sugeridos:
 
 ```bash
 ls -la logs backups
@@ -68,42 +68,42 @@ tail -n 50 logs/system-monitor.log
 tail -n 50 logs/backup.log
 ```
 
-Talking points:
+Pontos de fala:
 
-- Logs are generated locally and ignored by Git.
-- `.gitkeep` keeps empty evidence folders in the repository.
-- Backups are generated locally under `backups/` and ignored by Git.
+- Logs são gerados localmente e ignorados pelo Git.
+- `.gitkeep` mantém pastas vazias de evidência no repositório.
+- Backups são gerados localmente em `backups/` e ignorados pelo Git.
 
-## 6. Tests Demonstration
+## 6. Demonstração de Testes
 
-Suggested command:
+Comando sugerido:
 
 ```bash
 npm run test
 ```
 
-Talking points:
+Pontos de fala:
 
-- Vitest is the test runner.
-- Testing Library validates user-visible app behavior.
-- Tests also validate DevOps evidence files without requiring Docker, Kubernetes, Bash or kubectl.
+- Vitest é o test runner.
+- Testing Library valida comportamentos visíveis da aplicação para o usuário.
+- Os testes também validam arquivos de evidência DevOps sem exigir Docker, Kubernetes, Bash ou kubectl.
 
-## 7. CI/CD Demonstration
+## 7. Demonstração de CI/CD
 
-Suggested place to show:
+Locais sugeridos para mostrar:
 
 - `.github/workflows/ci.yaml`
-- GitHub Actions tab in the repository
+- Aba GitHub Actions no repositório
 
-Talking points:
+Pontos de fala:
 
-- CI runs on `develop`, `master` and `main`.
-- CI executes install, lint, tests, shell syntax validation, frontend build and Docker build.
-- The pipeline validates quality but does not deploy or push images.
+- O CI roda em `develop`, `master` e `main`.
+- O CI executa instalação, lint, testes, validação de sintaxe shell, build frontend e build Docker.
+- O pipeline valida qualidade, mas não faz deploy nem envia imagens.
 
-## 8. Docker Explanation and Demo
+## 8. Explicação e Demonstração com Docker
 
-Suggested commands when Docker is available:
+Comandos sugeridos quando Docker estiver disponível:
 
 ```bash
 docker build -t linux-devops-dashboard .
@@ -111,16 +111,16 @@ docker run --name linux-devops-dashboard -p 8080:80 linux-devops-dashboard
 docker compose up --build
 ```
 
-Talking points:
+Pontos de fala:
 
-- Dockerfile uses multi-stage build.
-- Node builds the Vite app.
-- Nginx serves static files.
-- Docker Compose exposes port `8080` on the host and includes a healthcheck.
+- O Dockerfile usa multi-stage build.
+- Node gera o build da aplicação Vite.
+- Nginx serve arquivos estáticos.
+- Docker Compose expõe a porta `8080` no host e inclui um healthcheck.
 
-## 9. Kubernetes Explanation and Demo
+## 9. Explicação e Demonstração com Kubernetes
 
-Suggested commands when kubectl and a cluster are available:
+Comandos sugeridos quando `kubectl` e um cluster estiverem disponíveis:
 
 ```bash
 kubectl apply -f k8s/
@@ -130,23 +130,23 @@ kubectl get deployments
 kubectl port-forward svc/linux-devops-dashboard 8080:80
 ```
 
-Talking points:
+Pontos de fala:
 
-- Deployment uses 2 replicas.
-- Readiness and liveness probes check `/`.
-- Service exposes port 80 inside the cluster.
-- ConfigMap stores non-sensitive config.
-- Secret file is example-only and does not contain real secrets.
+- O Deployment usa 2 réplicas.
+- readinessProbe e livenessProbe verificam `/`.
+- O Service expõe a porta 80 dentro do cluster.
+- ConfigMap armazena configurações não sensíveis.
+- O arquivo de Secret é apenas exemplo e não contém segredos reais.
 
-Cleanup:
+Limpeza:
 
 ```bash
 kubectl delete -f k8s/
 ```
 
-## 10. Final Conclusion
+## 10. Conclusão Final
 
-- Summarize that the project demonstrates a complete DevOps learning path around a frontend app.
-- Mention what is complete: CI, tests, Docker build, Docker Compose, Kubernetes manifests, Linux scripts, logs/backups and documentation.
-- Mention honest limitations: no backend API, dashboard metrics are simulated, Docker/Kubernetes demos require local tools or a remote environment.
-- Present future improvements: real metrics API, registry publishing, real cluster deploy and observability stack.
+- Resumir que o projeto demonstra uma trilha completa de aprendizado DevOps ao redor de uma aplicação frontend.
+- Mencionar o que está completo: CI, testes, build Docker, Docker Compose, manifests Kubernetes, scripts Linux, logs/backups e documentação.
+- Mencionar limitações com transparência: ausência de backend API, métricas do dashboard simuladas e necessidade de ferramentas locais ou ambiente remoto para demonstrações com Docker/Kubernetes.
+- Apresentar melhorias futuras: API de métricas reais, publicação em registry, deploy em cluster real e stack de observabilidade.
