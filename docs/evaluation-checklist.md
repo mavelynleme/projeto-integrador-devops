@@ -1,6 +1,5 @@
 # Evaluation Checklist
 
-This checklist maps the professor evaluation criteria to evidence currently present in the repository. It does not claim features that are not implemented.
 
 | Criterion | Status | Evidence files | Suggested demo commands | Notes |
 | --- | --- | --- | --- | --- |
